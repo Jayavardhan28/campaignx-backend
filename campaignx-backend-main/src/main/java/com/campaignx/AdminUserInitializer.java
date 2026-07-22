@@ -28,7 +28,7 @@ public class AdminUserInitializer {
                 User admin = new User();
                 admin.setName("Admin User");
                 admin.setEmail(adminEmail);
-                admin.setPassword(passwordEncoder.encode("AdminPassword123"));
+                admin.setPassword(passwordEncoder.encode("Admin@123"));
                 admin.setRole(Role.ADMIN);
                 userRepository.save(admin);
                 System.out.println(
