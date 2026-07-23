@@ -5,6 +5,7 @@ import com.campaignx.dto.CampaignAIResponse;
 import com.campaignx.dto.CampaignRequest;
 import com.campaignx.dto.GeneratedContentDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,7 +19,8 @@ public class ContentGeneratorService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String AI_URL = "http://localhost:8000/generate";
+    @Value("${ai.service.url}")
+    private String aiUrl;
 
     public GeneratedContentDto generate(CampaignRequest req) {
 
@@ -33,7 +35,7 @@ public class ContentGeneratorService {
         // Call FastAPI
         CampaignAIResponse aiResponse =
                 restTemplate.postForObject(
-                        AI_URL,
+                        aiUrl,
                         aiRequest,
                         CampaignAIResponse.class
                 );
